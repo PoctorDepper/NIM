@@ -20,7 +20,7 @@ public class GameBoard
         return true;
     }
 
-    override public string ToString()
+    public override string ToString()
     {
         string result = "";
 
