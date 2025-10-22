@@ -19,4 +19,16 @@ public class GameBoard
         Piles[pile] -= amount;
         return true;
     }
+
+    override public string ToString()
+    {
+        string result = "";
+
+        for (var pile = 0; pile < Piles.Length; ++pile)
+        {
+            result += $"{pile}: {Piles[pile]}\n";
+        }
+
+        return result;
+    }
 }
