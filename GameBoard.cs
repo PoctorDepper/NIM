@@ -8,6 +8,12 @@ public class GameBoard(int pileCount, int pileSize)
     public List<int> Piles { get; } = Enumerable.Repeat(pileSize, pileCount).ToList();
 
     /// <summary>
+    /// A property tracking the emptiness of piles on the board.
+    /// </summary>
+    /// <returns><c>true</c> when all the piles are empty on the board, signifying a win condition.</returns>
+    public bool IsEmpty => Piles.All(pile => pile == 0);
+
+    /// <summary>
     /// Plays a move on the current board, regardless of the player who played it.
     /// </summary>
     /// <param name="pile">Which pile to pick from.</param>
@@ -15,7 +21,7 @@ public class GameBoard(int pileCount, int pileSize)
     /// <returns><c>true</c> if the move was valid.</returns>
     public bool PlayMove(int pile, int amount)
     {
-        if (pile >= Piles.Count || amount > Piles[pile]) return false;
+        if (pile < 0 || pile >= Piles.Count || amount > Piles[pile] || amount < 1) return false;
         Piles[pile] -= amount;
         return true;
     }
