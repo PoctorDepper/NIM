@@ -1,11 +1,60 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿// Top-level entry point
 
-Console.WriteLine("Hello, World!");
+using NIM;
 
-Console.WriteLine("hiiii");
+// Initialize the board
+int piles, pileSize;
+do
+{
+    Console.Write("Enter a number of piles: ");
+} while (!int.TryParse(Console.ReadLine(), out piles) || piles <= 0);
 
-Console.WriteLine("oh gawd");
+do
+{
+    Console.Write("Enter a pile size: ");
+} while (!int.TryParse(Console.ReadLine(), out pileSize) || pileSize <= 0);
 
-NIM.GameBoard gameBoard = new NIM.GameBoard(3, 5);
+GameBoard board = new(piles, pileSize);
 
-Console.WriteLine(gameBoard.ToString());
+// TODO add proper input switch for (N)PC
+bool humanOpponent = true;
+
+// Begin play
+int player = -1;
+while (!board.IsEmpty)
+{
+    Console.WriteLine(board.ToString());
+    player = ++player % 2;
+
+    // Take human input (i.e. require console input)
+    if (player == 0 || humanOpponent)
+    {
+        Console.WriteLine($"Your turn, Player {player + 1}!");
+
+        int pile, amount;
+        do
+        {
+            do
+            {
+                Console.Write("Choose a pile: ");
+            } while (!int.TryParse(Console.ReadLine(), out pile));
+
+            do
+            {
+                Console.Write("Choose an amount to remove: ");
+            } while (!int.TryParse(Console.ReadLine(), out amount));
+        } while (!board.PlayMove(pile, amount));
+
+        continue;
+    }
+
+    // TODO implement the AI and the minimax algorithm
+    // TODO display what move the AI took
+}
+
+// Output who won.
+Console.WriteLine();
+Console.WriteLine(humanOpponent ? $"Congratulations Player {player + 1}! You have won!" :
+    player == 0 ? "You have won!" : "You have lost!");
+
+return 0;
