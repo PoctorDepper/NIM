@@ -26,6 +26,16 @@ public class GameBoard(int pileCount, int pileSize)
         return true;
     }
 
+    public int GetNimSum()
+    {
+        int nimsum = 0;
+        foreach(int i in Piles)
+        {
+            nimsum = nimsum ^ i;
+        }
+        return nimsum;
+    }
+
     /// <summary>
     /// Displays the game board as rows of piles with the value of that pile to the right of the index.
     /// </summary>

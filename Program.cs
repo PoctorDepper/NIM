@@ -2,6 +2,7 @@
 
 using NIM;
 
+
 // Initialize the board
 int piles, pileSize;
 do
@@ -32,6 +33,7 @@ int player = -1;
 while (!board.IsEmpty)
 {
     Console.WriteLine(board.ToString());
+    Console.WriteLine(board.GetNimSum());
     player = ++player % 2;
 
     // Take human input (i.e. require console input)
