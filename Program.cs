@@ -16,8 +16,16 @@ do
 
 GameBoard board = new(piles, pileSize);
 
-// TODO add proper input switch for (N)PC
+//Query for human opponent
 bool humanOpponent = true;
+string? humanOpponentString = "";
+while(!humanOpponentString.ToUpper().Equals("Y") && !humanOpponentString.ToUpper().Equals("N"))
+{
+    Console.Write("2P Game? (Y/N)");
+    humanOpponentString = Console.ReadLine();
+}
+humanOpponent = humanOpponentString.ToUpper() == "Y";
+
 
 // Begin play
 int player = -1;
