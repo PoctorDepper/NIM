@@ -26,12 +26,16 @@ public class GameBoard(int pileCount, int pileSize)
         return true;
     }
 
+    /// <summary>
+    /// Calculates the bitwise exclusive-or of all piles down to a single value.
+    /// </summary>
+    /// <returns>The single value calculated with exclusive or.</returns>
     public int GetNimSum()
     {
         int nimsum = 0;
-        foreach(int i in Piles)
+        foreach(int pile in Piles)
         {
-            nimsum = nimsum ^ i;
+            nimsum ^= pile;
         }
         return nimsum;
     }
